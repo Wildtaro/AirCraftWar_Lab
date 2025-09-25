@@ -173,12 +173,15 @@ public class Game extends JPanel {
                 ));
 //                System.out.println("MobEnemy come");
             } else {
-                int randomSpeedX = (int)(Math.random()*11)-5;
+                int randomSpeedX;
+                do {
+                    randomSpeedX = (int)(Math.random()*11)-5;
+                }while (randomSpeedX == 0);
                 enemyAircrafts.add(new EliteEnemy(
                         (int) (Math.random() * (Main.WINDOW_WIDTH - ImageManager.ELITE_ENEMY_IMAGE.getWidth())),
                         (int) (Math.random() * Main.WINDOW_HEIGHT * 0.05),
                         randomSpeedX,
-                        6,
+                        4,
                         60
                 ));
             }
