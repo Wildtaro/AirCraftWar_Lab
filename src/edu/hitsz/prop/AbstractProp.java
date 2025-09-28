@@ -1,20 +1,18 @@
 package edu.hitsz.prop;
 
-import edu.hitsz.aircraft.AbstractAircraft;
+import edu.hitsz.aircraft.HeroAircraft;
 import edu.hitsz.application.Main;
 import edu.hitsz.basic.AbstractFlyingObject;
 
-
 /**
- * 所有道具的抽象父类
+ * 道具类。
  *
  * @author hitsz
  */
+public abstract class AbstractProp extends AbstractFlyingObject {
 
-public abstract class BaseProp extends AbstractFlyingObject {
-
-    public BaseProp(int locationX, int locationY, int speedX, int speedY){
-        super(locationX, locationY, speedX, speedY - 8);
+    public AbstractProp(int locationX, int locationY, int speedX, int speedY) {
+        super(locationX, locationY, speedX, speedY);
     }
 
     @Override
@@ -27,15 +25,19 @@ public abstract class BaseProp extends AbstractFlyingObject {
         }
 
         // 判定 y 轴出界
-        if (speedY > 0 && locationY >= Main.WINDOW_HEIGHT ) {
+        if (speedY > 0 && locationY >= Main.WINDOW_HEIGHT) {
             // 向下飞行出界
             vanish();
-        }else if (locationY <= 0){
+        } else if (locationY <= 0) {
             // 向上飞行出界
             vanish();
         }
     }
 
-    public abstract void effect(AbstractAircraft aircraft);
-
+    /**
+     * 抽象方法active
+     * <p>
+     * 道具起作用
+     */
+    public abstract void active(HeroAircraft heroAircraft);
 }

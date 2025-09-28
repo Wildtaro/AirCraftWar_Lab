@@ -1,4 +1,16 @@
 package edu.hitsz.factory;
 
-public class BloodPropFactory {
+import edu.hitsz.prop.BloodProp;
+
+/**
+ * BloodPropFactory
+ *
+ * @author hitsz
+ */
+public class BloodPropFactory implements PropFactory {
+
+    @Override
+    public BloodProp createProp(int x, int y, int speedY) {
+        return new BloodProp(x, y, 0, speedY);
+    }
 }

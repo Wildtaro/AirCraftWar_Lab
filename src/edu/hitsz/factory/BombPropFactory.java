@@ -1,4 +1,17 @@
 package edu.hitsz.factory;
 
-public class BombPropFactory {
+import edu.hitsz.prop.BloodProp;
+import edu.hitsz.prop.BombProp;
+
+/**
+ * BombPropFactory
+ *
+ * @author hitsz
+ */
+public class BombPropFactory implements PropFactory {
+
+    @Override
+    public BombProp createProp(int x, int y, int speedY) {
+        return new BombProp(x, y, 0, speedY);
+    }
 }

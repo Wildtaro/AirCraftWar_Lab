@@ -1,27 +1,77 @@
-@startuml
+@startuml PropFactory
 'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
 
-List <|-- AbstractList
-Collection <|-- AbstractCollection
+abstract class AbstractProp
+{
+    + AbstractProp(int locationX, int locationY,
+        int speedX, int speedY)
+    + forward():void
+    + {abstract} active(HeroAircraft heroAircraft):void
+}
+AbstractProp ..> HeroAircraft
 
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
 
-class ArrayList {
-Object[] elementData
-size()
+class BloodProp
+{
+    - hpIncrease:int
+
+    + BloodProp(int locationX, int locationY,
+        int speedX, int speedY)
+    + active(HeroAircraft heroAircraft):void
+}
+AbstractProp <|-- BloodProp
+BloodProp ..> HeroAircraft
+
+
+class BombProp
+{
+
+    + BombProp(int locationX, int locationY,
+        int speedX, int speedY)
+    + active(HeroAircraft heroAircraft):void
+}
+AbstractProp <|-- BombProp
+BombProp ..> HeroAircraft
+
+
+class BulletProp
+{
+
+    + BulletProp(int locationX, int locationY,
+        int speedX, int speedY)
+    + active(HeroAircraft heroAircraft):void
+}
+AbstractProp <|-- BulletProp
+BulletProp ..> HeroAircraft
+
+
+
+
+interface PropFactory {
+    + createProp(int x, int y, int speedY):AbstractProp
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+
+class BloodPropFactory {
+    + createProp(int x, int y, int speedY):BloodProp
 }
+PropFactory <|.. BloodPropFactory
+BloodProp <.. BloodPropFactory
+
+
+class BombPropFactory {
+    + createProp(int x, int y, int speedY):BombProp
+}
+PropFactory <|.. BombPropFactory
+BombProp <.. BombPropFactory
+
+
+class BulletPropFactory {
+    + createProp(int x, int y, int speedY):BulletProp
+}
+PropFactory <|.. BulletPropFactory
+BulletProp <.. BulletPropFactory
+
 
 @enduml
